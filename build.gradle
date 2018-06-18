@@ -7,6 +7,7 @@ version = "1.0-SNAPSHOT"
 
 apply plugin: "java"
 apply plugin: "idea"
+apply plugin: 'groovy'
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 
@@ -18,5 +19,12 @@ repositories {
 }
 
 dependencies {
+     compile(group: 'javax.inject', name: 'javax.inject', version: '1')
+}
+
+jmh {
 
 }
+
+apply from: 'gradle/benchmark.gradle'
+

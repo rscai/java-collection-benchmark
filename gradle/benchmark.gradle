@@ -1,0 +1,32 @@
+def benchmarkInclude = []
+def benchmarkThreads = 4
+def benchmarkThreadGroups =[1,1]
+def benchmarkResultsFile ='results.txt'
+
+task benchmark{
+    if(project.hasProperty('jmhInclude')){
+        benchmarkInclude.clear()
+        benchmarkInclude.addAll(jmhInclude.split(','))
+    }
+    if(project.hasProperty('jmhThreads')){
+        benchmarkThreads = jmhThreads
+    }
+    if(project.hasProperty('jmhThreadGroups')){
+        benchmarkThreadGroups.clear()
+        benchmarkThreadGroups.addAll(jmhThreadGroups.split(',').collect{Integer.valueOf(it)})
+    }
+    if(project.hasProperty('jmhResultsFile')){
+        benchmarkResultsFile=jmhResultsFile
+    }
+
+    logger.info("include benchmark %s",benchmarkInclude)
+    jmh {
+        include = benchmarkInclude
+        threadGroups = benchmarkThreadGroups
+        resultsFile = project.file("${project.buildDir}/reports/jmh/"+benchmarkResultsFile)
+    }
+    dependsOn 'jmh'
+}
+
+
+
