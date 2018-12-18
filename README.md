@@ -25,3 +25,17 @@
 ```shell
 ./gradlew benchmark -PjmhInclude=CopyOnWriteArrayListBenchmark,SynchronizedListBenchmark,VectorBenchmark -PjmhThreadGroups=7,1 -PjmhResultsFile=list_concurrent_c7_p1.txt
 ```
+
+## Map
+
+```shell
+./gradlew clean benchmark -PjmhInclude=HashMapBenchmark,LinkedHashMapBenchmark,TreeMapBenchmark -PjmhThreadGroups=1 -PjmhResultsFile=map_general.txt
+```
+
+## Set
+
+```shell
+./gradlew clean benchmark -PjmhInclude=HashSetBenchmark,TreeSetBenchmark -PjmhThreadGroups=1 -PjmhResultsFile=set_general.txt
+```
+
+./gradlew clean benchmark -PjmhInclude=HashSetBenchmark,TreeSetBenchmark,HashMapBenchmark,LinkedHashMapBenchmark,TreeMapBenchmark -PjmhThreadGroups=1 -PjmhResultsFile=set_general.txt
